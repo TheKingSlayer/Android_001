@@ -5,25 +5,31 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
+import android.widget.TextView;
 
 
-public class MainActivity extends ActionBarActivity {
+public class DisplayMsgAct extends ActionBarActivity {
 
-    public final static String EXTRA_MESSAGE = "com.example.vinay.appone.MESSAGE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        // Get the message from the intent
+        Intent intent = getIntent();
+        String msg = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+
+        // Create the textView
+        TextView txtView = new TextView(this);
+        txtView.setTextSize(40);
+        txtView.setText(msg);
+
+        // set the text view as the activity layout
+        setContentView(txtView);
+
+      //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -38,14 +44,5 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void sendMessage(View view)
-    {
-        Intent intent =  new Intent(this, DisplayMsgAct.class);
-        EditText editText = (EditText) findViewById(R.id.edit_message);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
     }
 }
