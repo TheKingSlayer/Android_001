@@ -26,6 +26,8 @@ public class DisplayMsgAct extends ActionBarActivity {
         // set the text view as the activity layout
         setContentView(txtView);
 
+      //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
 
